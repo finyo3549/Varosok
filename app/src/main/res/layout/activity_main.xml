@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:backgroundTint="@android:color/background_light">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:text="Városok"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="215dp"
+        android:src="@drawable/cities" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listazasButton"
+        android:text="Listázás"
+        android:textSize="32sp"
+        android:backgroundTint="@color/blue"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ujFElveteleButton"
+        android:text="Új felvétel"
+        android:textSize="32sp"
+        android:backgroundTint="@color/blue"/>
+
+</LinearLayout>

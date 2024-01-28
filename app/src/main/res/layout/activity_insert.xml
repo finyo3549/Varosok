@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InsertActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ujAdatFelveteleProgressBar"
+        android:visibility="gone"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ujAdatFelveteleId"
+        android:visibility="gone"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ujAdatFelveteleNev"
+        android:textSize="32sp"
+        android:hint="Város neve"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ujAdatFelveteleOrszag"
+        android:textSize="32sp"
+        android:hint="Ország neve"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ujAdatFelveteleLakossag"
+        android:textSize="32sp"
+        android:hint="Lakosok száma"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Új Adat felvétele"
+        android:textSize="32sp"
+        android:backgroundTint="@color/green"
+        android:id="@+id/ujAdatFelveteleButton"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vissza"
+        android:id="@+id/ujAdatVisszaButton"
+        android:textSize="32sp"
+        android:backgroundTint="@color/blue"/>
+</LinearLayout>
