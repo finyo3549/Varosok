@@ -14,6 +14,25 @@ public class City {
         this.lakossag = lakossag;
     }
 
+    public City() {
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNev(String nev) {
+        this.nev = nev;
+    }
+
+    public void setOrszag(String orszag) {
+        this.orszag = orszag;
+    }
+
+    public void setLakossag(int lakossag) {
+        this.lakossag = lakossag;
+    }
+
     // Getters
     public int getId() {
         return id;

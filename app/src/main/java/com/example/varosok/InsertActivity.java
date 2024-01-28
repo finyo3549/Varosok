@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +47,42 @@ public class InsertActivity extends AppCompatActivity implements ListLoader.List
         setContentView(R.layout.activity_insert);
         init();
         loadCityList();
+        TextWatcher textWatcher = null;
+
+        textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                String idString = ujAdatFelveteleId.getText().toString();
+                String nev = ujAdatFelveteleNev.getText().toString();
+                String orszag = ujAdatFelveteleOrszag.getText().toString();
+                String lakossagString = ujAdatFelveteleLakossag.getText().toString();
+
+                boolean allFieldsSet = !idString.isEmpty() && !nev.isEmpty() && !orszag.isEmpty() && !lakossagString.isEmpty();
+
+                ujAdatFelveteleButton.setEnabled(allFieldsSet);
+            }
+        };
+        ujAdatFelveteleId.addTextChangedListener(textWatcher);
+        ujAdatFelveteleNev.addTextChangedListener(textWatcher);
+        ujAdatFelveteleOrszag.addTextChangedListener(textWatcher);
+        ujAdatFelveteleLakossag.addTextChangedListener(textWatcher);
+
+        String idString = ujAdatFelveteleId.getText().toString();
+        String nev = ujAdatFelveteleNev.getText().toString();
+        String orszag = ujAdatFelveteleOrszag.getText().toString();
+        String lakossagString = ujAdatFelveteleLakossag.getText().toString();
+        if (nev != null && orszag != null && lakossagString != null) {
+            ujAdatFelveteleButton.setEnabled(true);
+        }
         ujAdatFelveteleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,29 +90,29 @@ public class InsertActivity extends AppCompatActivity implements ListLoader.List
                 String nev = ujAdatFelveteleNev.getText().toString();
                 String orszag = ujAdatFelveteleOrszag.getText().toString();
                 String lakossagString = ujAdatFelveteleLakossag.getText().toString();
-
-                if (idString.equals("") || nev.equals("") || orszag.equals("") || lakossagString.equals("")) {
-                    Toast.makeText(InsertActivity.this, "Minden mező kitöltése kötelező", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 Integer id = null;
                 Integer lakossag = null;
                 try {
                     id = Integer.parseInt(idString);
                     lakossag = Integer.parseInt(lakossagString);
-
-                    // Continue with your logic here
                 } catch (NumberFormatException e) {
                     Toast.makeText(InsertActivity.this, "Hibás formátum: Számot adj meg a 'Lakosság' mezőbe", Toast.LENGTH_SHORT).show();
                 }
-                City city = new City(id, nev, orszag, lakossag);
-                Gson jsonConverter = new Gson();
-                RequestTask task = new RequestTask(url, "POST", jsonConverter.toJson(city));
-                task.execute();
+                if (lakossag != null) {
+                    City city = new City(id, nev, orszag, lakossag);
+                    Gson jsonConverter = new Gson();
+                    RequestTask task = new RequestTask(url, "POST", jsonConverter.toJson(city));
+                    task.execute();
+                }
             }
         });
-
+        ujAdatVisszaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InsertActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private class RequestTask extends AsyncTask<Void, Void, Response> {
@@ -128,5 +166,6 @@ public class InsertActivity extends AppCompatActivity implements ListLoader.List
         ujAdatFelveteleButton = findViewById(R.id.ujAdatFelveteleButton);
         ujAdatVisszaButton = findViewById(R.id.ujAdatVisszaButton);
         ujAdatFelveteleProgressBar = findViewById(R.id.ujAdatFelveteleProgressBar);
+
     }
 }

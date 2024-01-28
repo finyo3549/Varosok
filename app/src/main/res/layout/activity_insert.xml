@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ujAdatFelveteleId"
-        android:visibility="gone"
+        android:hint="ID"
+        android:textSize="32sp"
         />
     <EditText
         android:layout_width="match_parent"
@@ -42,7 +43,8 @@
         android:text="Új Adat felvétele"
         android:textSize="32sp"
         android:backgroundTint="@color/green"
-        android:id="@+id/ujAdatFelveteleButton"/>
+        android:id="@+id/ujAdatFelveteleButton"
+        android:enabled="false"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
