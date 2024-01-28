@@ -44,10 +44,17 @@ public class ListActivity extends AppCompatActivity implements RequestCallback{
     @Override
     public void onSuccess(Response response, List<City> updatedCities) {
         progressBar.setVisibility(View.GONE);
+        if(linearLayoutForm.getVisibility() == View.VISIBLE) {
+            backButtonListActivity.setVisibility(View.VISIBLE);
+            varosNev_EditText.setVisibility(View.GONE);
+            orszag_EditText.setVisibility(View.GONE);
+            lakossag_EditText.setVisibility(View.GONE);
+            modositButton_list.setVisibility(View.GONE);
+        }
         // Handle the updatedCities list as needed
         cities.clear();
         cities.addAll(updatedCities);
-        // Now update the adapter
+
         if (listView_List.getAdapter() != null) {
             ((CityAdapter) listView_List.getAdapter()).notifyDataSetChanged();
         }
@@ -111,7 +118,6 @@ public class ListActivity extends AppCompatActivity implements RequestCallback{
                     linearLayoutForm.setVisibility(View.VISIBLE);
                     modositButton_list.setVisibility(View.VISIBLE);
                     varosNev_EditText.setVisibility(View.VISIBLE);
-                    orszag_EditText.setVisibility(View.VISIBLE);
                     orszag_EditText.setVisibility(View.VISIBLE);
                     lakossag_EditText.setVisibility(View.VISIBLE);
                 }

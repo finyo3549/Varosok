@@ -55,7 +55,7 @@ public class InsertActivity extends AppCompatActivity implements ListLoader.List
 
                 if (idString.equals("") || nev.equals("") || orszag.equals("") || lakossagString.equals("")) {
                     Toast.makeText(InsertActivity.this, "Minden mező kitöltése kötelező", Toast.LENGTH_SHORT).show();
-                    return; // Return to avoid further processing in case of empty fields
+                    return;
                 }
 
                 Integer id = null;
