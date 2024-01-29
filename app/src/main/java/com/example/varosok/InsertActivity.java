@@ -3,6 +3,7 @@ package com.example.varosok;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -28,6 +29,7 @@ public class InsertActivity extends AppCompatActivity implements ListLoader.List
     private Button ujAdatVisszaButton;
     private ProgressBar ujAdatFelveteleProgressBar;
     private String url = "https://retoolapi.dev/xhsAsC/data";
+    private List<City> updatedCities = new ArrayList<>();
 
     private void loadCityList() {
         ListLoader.ListLoaderclass listLoader = new ListLoader.ListLoaderclass(url, this);
@@ -38,7 +40,7 @@ public class InsertActivity extends AppCompatActivity implements ListLoader.List
     public void onListLoaded(List<City> cities, int lastId) {
         int newId = lastId + 1;
         ujAdatFelveteleId.setText(String.valueOf(newId));
-
+        updatedCities.addAll(cities);
     }
 
     @Override
@@ -105,6 +107,25 @@ public class InsertActivity extends AppCompatActivity implements ListLoader.List
                     task.execute();
                 }
             }
+        });
+        ujAdatFelveteleNev.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String name = ujAdatFelveteleNev.getText().toString().trim();
+                    for (City city : updatedCities) {
+                        if (city.getName().equalsIgnoreCase(name)) {
+                            ujAdatFelveteleNev.setText(city.getName());
+                            ujAdatFelveteleNev.setTextColor(Color.RED);
+                            break;
+                        }
+                    }
+                }
+                if(hasFocus){
+                    ujAdatFelveteleNev.setTextColor(Color.BLACK);
+                }
+            }
+
         });
         ujAdatVisszaButton.setOnClickListener(new View.OnClickListener() {
             @Override

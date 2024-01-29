@@ -4,18 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InsertActivity"
-    android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".updateActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="32sp"
+    android:hint="ID"
+    android:id="@+id/textview"/>
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ujAdatFelveteleProgressBar"
+        android:id="@+id/updateActivityProgressBar"
         android:visibility="gone"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ujAdatFelveteleId"
+        android:id="@+id/updateActivityId"
         android:hint="ID"
         android:textSize="32sp"
         android:visibility="gone"
@@ -23,34 +29,35 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ujAdatFelveteleNev"
+        android:id="@+id/updateActivityNev"
         android:textSize="32sp"
         android:hint="Város neve"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ujAdatFelveteleOrszag"
+        android:id="@+id/updateActivityOrszag"
         android:textSize="32sp"
         android:hint="Ország neve"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ujAdatFelveteleLakossag"
+        android:id="@+id/updateActivityLakossag"
         android:textSize="32sp"
         android:hint="Lakosok száma"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Új Adat felvétele"
+        android:text="Módosítások rögzítése"
         android:textSize="32sp"
-        android:backgroundTint="@color/green"
-        android:id="@+id/ujAdatFelveteleButton"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/red"
+        android:id="@+id/updateActivityUpdateButton"
         android:enabled="false"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Vissza"
-        android:id="@+id/ujAdatVisszaButton"
+        android:id="@+id/updateActivityBackButton"
         android:textSize="32sp"
         android:backgroundTint="@color/blue"/>
 </LinearLayout>

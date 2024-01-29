@@ -29,9 +29,7 @@ import java.util.List;
 
 public class ListActivity extends AppCompatActivity implements RequestCallback{
 
-    private EditText varosNev_EditText;
-    private EditText orszag_EditText;
-    private EditText lakossag_EditText;
+
     public ListView listView_List;
     private Button backButtonListActivity;
     private Button modositButton_list;
@@ -46,12 +44,8 @@ public class ListActivity extends AppCompatActivity implements RequestCallback{
         progressBar.setVisibility(View.GONE);
         if(linearLayoutForm.getVisibility() == View.VISIBLE) {
             backButtonListActivity.setVisibility(View.VISIBLE);
-            varosNev_EditText.setVisibility(View.GONE);
-            orszag_EditText.setVisibility(View.GONE);
-            lakossag_EditText.setVisibility(View.GONE);
-            modositButton_list.setVisibility(View.GONE);
         }
-        // Handle the updatedCities list as needed
+
         cities.clear();
         cities.addAll(updatedCities);
 
@@ -63,7 +57,7 @@ public class ListActivity extends AppCompatActivity implements RequestCallback{
     @Override
     public void onFailure(IOException e) {
         progressBar.setVisibility(View.GONE);
-        // Handle failure...
+
     }
 
 
@@ -78,16 +72,12 @@ public class ListActivity extends AppCompatActivity implements RequestCallback{
     }
 
     public void init() {
-        varosNev_EditText = findViewById(R.id.varosNev_EditText);
-        orszag_EditText = findViewById(R.id.orszag_EditText);
-        editTextId = findViewById(R.id.editTextId);
-        lakossag_EditText = findViewById(R.id.lakossag_EditText);
         listView_List = findViewById(R.id.listView_List);
         listView_List.setAdapter(new CityAdapter());
         backButtonListActivity = findViewById(R.id.backButtonListActivity);
-        modositButton_list = findViewById(R.id.modositButton_list);
         progressBar = findViewById(R.id.progressBar);
         linearLayoutForm = findViewById(R.id.linearLayoutForm);
+        editTextId = findViewById(R.id.editTextId);
     }
 
     public class CityAdapter extends ArrayAdapter<City> {
@@ -107,19 +97,17 @@ public class ListActivity extends AppCompatActivity implements RequestCallback{
             Button torolButton = view.findViewById(R.id.torolButton);
             City actualCity = cities.get(position);
             cityName.setText(actualCity.getName());
+            editTextId.setText(String.valueOf(actualCity.getId()));
+
 
             modositButton_cities_list.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    editTextId.setText(String.valueOf(actualCity.getId()));
-                    varosNev_EditText.setText(actualCity.getName());
-                    orszag_EditText.setText(actualCity.getOrszag());
-                    lakossag_EditText.setText(String.valueOf(actualCity.getPopulation()));
-                    linearLayoutForm.setVisibility(View.VISIBLE);
-                    modositButton_list.setVisibility(View.VISIBLE);
-                    varosNev_EditText.setVisibility(View.VISIBLE);
-                    orszag_EditText.setVisibility(View.VISIBLE);
-                    lakossag_EditText.setVisibility(View.VISIBLE);
+                    int id = Integer.parseInt(editTextId.getText().toString());
+                    Intent intent = new Intent(ListActivity.this,updateActivity.class);
+                    intent.putExtra("id",id);
+                    startActivity(intent);
+                    finish();
                 }
             });
             torolButton.setOnClickListener(new View.OnClickListener() {
@@ -138,24 +126,7 @@ public class ListActivity extends AppCompatActivity implements RequestCallback{
                     finish();
                 }
             });
-            modositButton_list.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    modifyCity();
-                }
-            });
             return view;
         }
-    }
-
-    private void modifyCity() {
-        int id = Integer.parseInt(editTextId.getText().toString());
-        String name = varosNev_EditText.getText().toString();
-        String orszag = orszag_EditText.getText().toString();
-        int lakossag = Integer.parseInt(lakossag_EditText.getText().toString());
-        City city = new City(id, name, orszag, lakossag);
-        Gson jsonConverter = new Gson();
-        RequestTask task = new RequestTask(url + "/" + id, "PUT", jsonConverter.toJson(city), (RequestCallback) ListActivity.this,  ListActivity.this);
-        task.execute();
     }
 }

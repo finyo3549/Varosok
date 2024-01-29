@@ -17,32 +17,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/linearLayoutForm"
         android:orientation="vertical">
-
-
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextId"
-        android:visibility="gone"
-        android:hint="Id"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/varosNev_EditText"
-        android:visibility="gone"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/orszag_EditText"
-        android:visibility="gone"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lakossag_EditText"
-        android:visibility="gone"
-        />
+        android:visibility="gone"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,15 +30,6 @@
         android:text="Vissza"
         android:textSize="32sp"
         />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/modositButton_list"
-        android:text="Módosítás mentése"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/white"
-        android:textSize="32sp"
-        android:visibility="gone"/>
         </LinearLayout>
     <ListView
         android:layout_width="match_parent"
