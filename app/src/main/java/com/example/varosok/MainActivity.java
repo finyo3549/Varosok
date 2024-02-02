@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button listazasButton;
     private Button insertButton;
+    private Button virusSpreadCalculateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +35,19 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        virusSpreadCalculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,CalculateActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     public void init(){
         listazasButton = findViewById(R.id.listazasButton);
         insertButton = findViewById(R.id.ujFElveteleButton);
+        virusSpreadCalculateButton = findViewById(R.id.virusSpreadCalculateButton);
     }
 
 

@@ -32,5 +32,11 @@
         android:text="Új felvétel"
         android:textSize="32sp"
         android:backgroundTint="@color/blue"/>
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/virusSpreadCalculateButton"
+        android:text="Kiszámításra"
+        android:textSize="32sp"
+        android:backgroundTint="@color/red"/>
 </LinearLayout>

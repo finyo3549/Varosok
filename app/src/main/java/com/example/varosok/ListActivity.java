@@ -1,5 +1,7 @@
 package com.example.varosok;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +28,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import android.util.Log;
 public class ListActivity extends AppCompatActivity implements RequestCallback{
 
 
@@ -57,7 +59,7 @@ public class ListActivity extends AppCompatActivity implements RequestCallback{
     @Override
     public void onFailure(IOException e) {
         progressBar.setVisibility(View.GONE);
-
+        Log.d(TAG, "onFailure: failed");
     }
 
 
@@ -97,13 +99,11 @@ public class ListActivity extends AppCompatActivity implements RequestCallback{
             Button torolButton = view.findViewById(R.id.torolButton);
             City actualCity = cities.get(position);
             cityName.setText(actualCity.getName());
-            editTextId.setText(String.valueOf(actualCity.getId()));
-
 
             modositButton_cities_list.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int id = Integer.parseInt(editTextId.getText().toString());
+                    int id = actualCity.getId();
                     Intent intent = new Intent(ListActivity.this,updateActivity.class);
                     intent.putExtra("id",id);
                     startActivity(intent);

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Varosok"
         tools:targetApi="31">
         <activity
+            android:name=".CalculateActivity"
+            android:exported="false" />
+        <activity
             android:name=".updateActivity"
             android:exported="false" />
         <activity

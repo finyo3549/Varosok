@@ -48,7 +48,7 @@ public class InsertActivity extends AppCompatActivity implements ListLoader.List
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert);
         init();
-        loadCityList();
+           loadCityList();
         TextWatcher textWatcher = null;
 
         textWatcher = new TextWatcher() {

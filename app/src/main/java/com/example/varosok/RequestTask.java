@@ -99,7 +99,7 @@ public class RequestTask extends AsyncTask<Void, Void, Response> {
         updatedCities.replaceAll(city1 ->
                 city1.getId() == city.getId() ? city : city1);
         if (context != null) {
-            Toast.makeText(context.getApplicationContext(), "Sikeres adatlekérdezés", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "Sikeres adatfrissítés", Toast.LENGTH_SHORT).show();
             callback.onSuccess(response, updatedCities);
         }
     }
